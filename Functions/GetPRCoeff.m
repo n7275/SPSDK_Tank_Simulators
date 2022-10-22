@@ -8,29 +8,32 @@ function [A, B] = GetPRCoeff()
   global mass;
 
   R = R_CONST/1000;
-  
-  
+
+
 	A = 0;
 	B = 0;
 
 	for ii=1:MAX_SUB;
-		Pri = GetVapPress(ii)/CRITICAL_P(ii);
-		Tri = Temp/CRITICAL_T(ii);
-		
-		B += (0.07780*Pri/Tri)*mass(ii)/sum(mass);
+		Pi = GetVapPress(ii);
+    Tri = Temp/CRITICAL_T(ii);
 		xi = mass(ii)/sum(mass);
-		m = 0.37464 + 1.54226 * ACENTRIC(ii) - 0.26992*ACENTRIC(ii)^2;
-		ai = 0.45724*(R*CRITICAL_T(ii))^2/CRITICAL_P(ii)*(1+m*(1-sqrt(Tri)))^2;
-		Ai = 0.45724*ai*Pri/Tri^2;
+		mi = 0.37464 + 1.54226 * ACENTRIC(ii) - 0.26992*ACENTRIC(ii)^2;
+
+		ai = 0.4572355289*(R*CRITICAL_T(ii))^2/CRITICAL_P(ii)*(1+mi*(1-sqrt(Tri)))^2;
+		Ai = ai*Pi/(R*Temp)^2;
+
+    B += (0.0777960739*R*CRITICAL_T(ii)/CRITICAL_P(ii))*(GetVapPress(ii)/R/Temp)*mass(ii)/sum(mass);
 		for jj = 1:MAX_SUB;
-			Prj = GetVapPress(jj)/CRITICAL_P(jj);
-			Trj = Temp/CRITICAL_T(jj);
-			aj = 0.45724*(R*CRITICAL_T(jj))^2/CRITICAL_P(jj)*(1+m*(1-sqrt(Trj)))^2;
-			Aj = 0.45724*aj*Prj/Trj^2;
+			Pj = GetVapPress(ii);
+      mj = 0.37464 + 1.54226 * ACENTRIC(jj) - 0.26992*ACENTRIC(jj)^2;
+      Trj = Temp/CRITICAL_T(jj);
+			aj = 0.4572355289*(R*CRITICAL_T(jj))^2/CRITICAL_P(jj)*(1+mj*(1-sqrt(Trj)))^2;
+			Aj = aj*Pj/(R*Temp)^2;
+
 			Aij = sqrt(Ai*Aj);
 			xj = mass(jj)/sum(mass);
-			
-			A += xi*xj*Aij
+
+			A += xi*xj*Aij;
 		endfor
 	endfor
   return;
