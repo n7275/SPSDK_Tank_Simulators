@@ -36,9 +36,9 @@ L_DENSITY	= [1141.0,	70.0,		1000.0,		807.0,		1014.0,		1038.5,			899.0,			1450.0,
 global BULK_MOD;
 BULK_MOD	= [32e6,		24e6,		2.18e6,		32e6,		32e6,		2.55e6,			1.47397e6,		1.362e6,		10e6		];		#Pa .. assume constant and converted from m^3 to L
 global CRITICAL_P;
-CRITICAL_P = [350115.0,	89631.0,	1523741.0,	234421.0,	508833.0,	3097574.75,		11692906.154,	10132500.0,		226968.0224 ];		#Pa.. critical pressure
+CRITICAL_P = [4926063.722233855,	1303085.962148109,	19910602.43884709,	3300253.307024634,	7800213.020695794,	3097566.149152389,		14500299.44342058,	9998268.775903003,		228416.3259285132 ];		#Pa.. critical pressure
 global CRITICAL_T;
-CRITICAL_T = [154.7,		33.2,		647.3,		126.2,		304.4,		256.9525,		607.15,			431.15,			5.19		];		#K.. critical temperature
+CRITICAL_T = [154.7,		33.2,		647.3,		126.2,		304.4,		645,		607.15,			431.15,			5.19		];		#K.. critical temperature
 global ANTIONE_A;
 ANTIONE_A = [9.3199656,	6.59723,	12.490095,	9.0020008,	12.0892,	8.32957,		13.7222,		14.47645,		4.41952 ];			#Antione Equation A constant gives results in bar, must be converter to Pa	[1]
 global ANTIONE_B;
@@ -47,6 +47,7 @@ global ACENTRIC;
 ACENTRIC = [0.022,		-0.216,		0.345,		0.040,		0.288,		0.416,			0.316,			0.0141345,			-0.390];		#[3] Acentric factor
 
 global R_CONST = 8314.4621	##(L*Pa)/(mol*K)
+
 
 ThermalCompsPR(0.1)
 
