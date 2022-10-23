@@ -50,6 +50,7 @@ global R_CONST = 8314.4621	##(L*Pa)/(mol*K)
 
 
 ThermalCompsPR(0.1)
+V = Volume/sum(mass)
 
 ##Press_array = zeros(1,n_itterations);
 ##Temp_array = zeros(1,n_itterations);
