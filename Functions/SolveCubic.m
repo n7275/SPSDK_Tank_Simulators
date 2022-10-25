@@ -7,9 +7,9 @@ function [x1,x2, x3] = SolveCubic(A, B, C)
   R = (q*q/4)+(p*p*p/27);
   
   if(R<0)
-    x1 = m*cos(theta)
-    x2 = m*cos(theta + 4*pi/3)
-    x3 = m*cos(theta + 2*pi/3)
+    x1 = m*cos(theta);
+    x2 = m*cos(theta + 4*pi/3);
+    x3 = m*cos(theta + 2*pi/3);
   else
     x1 = 0;
   endif

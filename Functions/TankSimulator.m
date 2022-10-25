@@ -13,7 +13,7 @@ global delta_time = 0.1;
 global mass;
 mass = [30,0,0,0,0,0,0,0,0];#g;
 global Q;
-Q = 2500.0;
+Q = 2800.0;
 
 
 global Volume = 800;
