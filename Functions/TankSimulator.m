@@ -16,7 +16,7 @@ global Q;
 Q = 2800.0;
 
 
-global Volume = 10;
+global Volume = 500;
 global Press = 0;
 global Temp = 90;
 global total_mass = 0;
@@ -55,9 +55,9 @@ for ii = 1:1000
 ThermalCompsPR(0.1)
   PressArray(ii) = Press;
   VolumeArray(ii) = Volume;
-  Volume -= .00998;
+  Volume -= 480/1000;
 endfor
-semilogx(VolumeArray,PressArray,'-+')
+loglog(VolumeArray,PressArray,'-+')
 
 
 
