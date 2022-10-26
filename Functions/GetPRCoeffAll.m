@@ -31,7 +31,7 @@ function [A, B, aii, bii] = GetPRCoeffAll()
 			Pj = GetVapPress(ii);
       mj = 0.37464 + 1.54226 * ACENTRIC(jj) - 0.26992*ACENTRIC(jj)^2;
       Trj = Temp/CRITICAL_T(jj);
-			aj = 0.4572355289*(R*CRITICAL_T(jj))^2/CRITICAL_P(jj)*(1+mj*(1-sqrt(Trj)))^2;
+			aj = 0.4572355289*(R*CRITICAL_T(jj))^2/CRITICAL_P(ii)*(1+mj*(1-sqrt(Trj)))^2;
 			Aj = aj*Pj/(R*Temp)^2;
 
 			Aij = sqrt(Ai*Aj);
