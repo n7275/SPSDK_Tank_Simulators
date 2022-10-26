@@ -13,10 +13,10 @@ global delta_time = 0.1;
 global mass;
 mass = [30,0,0,0,0,0,0,0,0];#g;
 global Q;
-Q = 2800.0;
+Q = 2700.0;
 
 
-global Volume = 800;
+global Volume = 10;
 global Press = 0;
 global Temp = 90;
 global total_mass = 0;
@@ -49,8 +49,15 @@ ACENTRIC = [0.022,		-0.216,		0.345,		0.040,		0.288,		0.416,			0.316,			0.0141345
 global R_CONST = 8314.4621	##(L*Pa)/(mol*K)
 
 
+PressArray = [];
+VolumeArray = [];
+for ii = 1:10000
 ThermalCompsPR(0.1)
-V = Volume/sum(mass)
+  PressArray(ii) = Press;
+  VolumeArray(ii) = Volume;
+  Volume -= .000998;
+endfor
+semilogx(VolumeArray,PressArray,'+')
 
 
 

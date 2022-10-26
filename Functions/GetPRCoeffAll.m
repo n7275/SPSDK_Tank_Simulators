@@ -1,4 +1,4 @@
-function [A, B] = GetPRCoeffAll()
+function [A, B, aii, bii] = GetPRCoeffAll()
 	global ACENTRIC;
 	global CRITICAL_P;
 	global CRITICAL_T;
@@ -12,6 +12,8 @@ function [A, B] = GetPRCoeffAll()
 
 	A = 0;
 	B = 0;
+  aii = 0;
+  bii = 0;
 
 	for ii=1:MAX_SUB;
 		Pi = GetVapPress(ii);
@@ -21,8 +23,10 @@ function [A, B] = GetPRCoeffAll()
 
 		ai = 0.4572355289*(R*CRITICAL_T(ii))^2/CRITICAL_P(ii)*(1+mi*(1-sqrt(Tri)))^2;
 		Ai = ai*Pi/(R*Temp)^2;
-
-    B += (0.0777960739*R*CRITICAL_T(ii)/CRITICAL_P(ii))*(GetVapPress(ii)/R/Temp)*mass(ii)/sum(mass);
+    
+    bi = (0.0777960739*R*CRITICAL_T(ii)/CRITICAL_P(ii));
+    bii += bi*mass(ii)/sum(mass);
+    B += bi*(GetVapPress(ii)/R/Temp)*mass(ii)/sum(mass);
 		for jj = 1:MAX_SUB;
 			Pj = GetVapPress(ii);
       mj = 0.37464 + 1.54226 * ACENTRIC(jj) - 0.26992*ACENTRIC(jj)^2;
@@ -31,8 +35,9 @@ function [A, B] = GetPRCoeffAll()
 			Aj = aj*Pj/(R*Temp)^2;
 
 			Aij = sqrt(Ai*Aj);
+      aij = sqrt(ai*aj);
 			xj = mass(jj)/sum(mass);
-
+      aii += xi*xj*aij;
 			A += xi*xj*Aij;
 		endfor
 	endfor
