@@ -13,6 +13,8 @@ function [x1,x2, x3, ThreeRoots] = SolveCubic(A, B, C)
     ThreeRoots = 1;
   else
     x1 = 0;
+    x2 = 0;
+    x3 = 0;
     ThreeRoots = 0;
   endif
   

@@ -3,7 +3,7 @@ tic;
 
 clear all;
 clc;
-close all;
+
 
 substance2plot = 1;
 
@@ -50,14 +50,16 @@ global R_CONST = 8314.4621	##(L*Pa)/(mol*K)
 
 
 PressArray = [];
-VolumeArray = [];
+VolumeArray = logspace(logn(500,10),logn(25,10),1000);
+setTemp(500,1);
 for ii = 1:1000
-ThermalCompsPR(0.1)
+  Volume = VolumeArray(ii);
+  ThermalCompsPR(0.1)
   PressArray(ii) = Press;
-  VolumeArray(ii) = Volume;
-  Volume -= 480/1000;
 endfor
-loglog(VolumeArray,PressArray,'-+')
+loglog(VolumeArray,PressArray)
+##grid on;
+##axis([20 500 1E6 1E8])
 
 
 
