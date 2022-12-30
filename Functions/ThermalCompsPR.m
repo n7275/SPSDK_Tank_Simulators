@@ -36,7 +36,7 @@ function ThermalCompsPR(dt)
     n += mass(ii)/MMASS(ii);
     Tcr_equiv += CRITICAL_T(ii) * mass(ii)/sum(mass);
   endfor
-    Vm = Volume/n;
+    Vm = Volume*1000/n;
     
   if GetMass() > 0;
     AvgC = AvgC / total_mass;
@@ -46,12 +46,13 @@ function ThermalCompsPR(dt)
   endif
   
   for ii = 1:MAX_SUB
-    TotalVapPress += GetVapPress(ii);
-
+    if mass(ii)> 0
+      TotalVapPress += GetVapPress(ii) * (mass(ii)/MMASS(ii))/n;
+    endif
   endfor
 
-  [A, B, aii, bii] = GetPRCoeffAll();
-  [x1, x2, x3, ThreeRoots] = SolveCubic(-(1-B),(A-3*B^2-2*B),(-A*B+B^2+B^3));
+  [A, B, aii, bii] = GetPRCoeffAll(TotalVapPress);
+  [x1, x2, x3, ThreeRoots] = SolveCubic(-(1-B),(A-3*B^2-2*B),(-A*B+B^2+B^3))
   
   aii *= 1E6;
   bii *= 1E6;
@@ -73,7 +74,9 @@ function ThermalCompsPR(dt)
     #Mixture is supercritical
     Press = (R_CONST/1000*Temp/(Vm-bii) - aii/((Vm*(Vm+bii)+bii*(Vm-bii))))*1E6;
   endif
-   
+  TotalVapPress
+  Tcr_equiv
+  n
   
 ##  for ii = 1:1
 ##    [A, B] = GetPRCoeff(ii);

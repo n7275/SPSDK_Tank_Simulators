@@ -11,7 +11,7 @@ n_itterations =10000;
 itteration = 0;
 global delta_time = 0.1;
 global mass;
-mass = [30,0,0,0,0,0,0,0,0];#g;
+mass = [33.5,0,0.5,6,0,0,0,0,0];#g;
 global Q;
 Q = 2800.0;
 
@@ -26,6 +26,7 @@ vapor_mass = [0,0,0,0,0,0,0,0,0];#g;
 global MAX_SUB = 9;
 
 global MMASS;
+%%    		O2			H2			H20			N2			CO2			GLYCOL			Aerozine-50		N2O4			He
 MMASS	= [31.998,	2.01588,	18.01528,	28.0134,	44.01,		33.434432,		92.146,			92.01,			4.00260		];		#g/mol
 global SPECIFICC_GAS;
 SPECIFICC_GAS	= [0.658,		10.183,		1.4108,		0.743,		0.6553,		3.625769,		0.48102,		4.6,			3.12		];		#J/g-K .. assume constant
@@ -50,15 +51,15 @@ global R_CONST = 8314.4621	##(L*Pa)/(mol*K)
 
 
 PressArray = [];
-VolumeArray = logspace(logn(500,10),logn(25,10),1000);
-setTemp(500,1);
+VolumeArray = logspace(logn(50,10),logn(0.03,10),1000);
+setTemp(145);
 for ii = 1:1000
   Volume = VolumeArray(ii);
   ThermalCompsPR(0.1)
   PressArray(ii) = Press;
 endfor
 loglog(VolumeArray,PressArray)
-##grid on;
+grid on;
 ##axis([20 500 1E6 1E8])
 
 
