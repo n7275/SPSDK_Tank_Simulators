@@ -51,13 +51,13 @@ function ThermalCompsPR(dt)
     endif
   endfor
 
-  [A, B, aii, bii] = GetPRCoeffAll(TotalVapPress);
+  [A, B, aii, bii] = GetPRCoeffAll(TotalVapPress,n);
   [x1, x2, x3, ThreeRoots] = SolveCubic(-(1-B),(A-3*B^2-2*B),(-A*B+B^2+B^3))
   
   aii *= 1E6;
   bii *= 1E6;
   
-  if(ThreeRoots && Temp < Tcr_equiv)
+  if(ThreeRoots || Temp < Tcr_equiv)
     #Mixture is either Liquid, VLE, or Vapor
     Zl = x3+(1-B)/3;
     Zv = x1+(1-B)/3;

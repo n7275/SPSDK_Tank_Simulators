@@ -52,7 +52,7 @@ global R_CONST = 8314.4621	##(L*Pa)/(mol*K)
 
 PressArray = [];
 VolumeArray = logspace(logn(50,10),logn(0.03,10),1000);
-setTemp(145);
+setTemp(153);
 for ii = 1:1000
   Volume = VolumeArray(ii);
   ThermalCompsPR(0.1)
